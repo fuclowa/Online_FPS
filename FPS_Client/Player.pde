@@ -73,7 +73,7 @@ class Player {
 
   void send_data() {
     client.write("Pos" + "|" + pos + "|" + yaw);
-    println("Pos" + "|" + pos + "|" + yaw);
+    //println("Pos" + "|" + pos + "|" + yaw);
   }
 
   boolean collision() {

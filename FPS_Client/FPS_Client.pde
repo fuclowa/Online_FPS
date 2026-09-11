@@ -41,7 +41,7 @@ void main_process() {
   process_player();
   process_camera();
   if (player.client.available() > 0) {
-    //process_enemy();
+    process_enemy();
   }
   process_Map_objects();
   println(player.id);
