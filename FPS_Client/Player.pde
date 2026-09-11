@@ -5,10 +5,11 @@ class Player {
   PVector v;
   float yaw, pitch;
   boolean ground;
+  int id;
   Client client;
 
   Player(PVector pos, float w, float h, float d, float yaw, float pitch, Client client) {
-
+    id = -1;
     this.pos = pos;
     this.w = w;
     this.h = h;
@@ -22,6 +23,13 @@ class Player {
 
   void update() {
     move();
+    if (player.client.available() > 0 && id == -1) {
+      String data = client.readString();
+      String[] data_array = split(trim(data), "|");
+      if (data_array[0].equals("ID")) {
+        id = int(data_array[1]);
+      }
+    }
   }
 
   void move() {
@@ -56,10 +64,10 @@ class Player {
 
   void display() {
     push();
-    fill(0,255,0);
-    translate(pos.x,pos.y,pos.z);
+    fill(0, 255, 0);
+    translate(pos.x, pos.y, pos.z);
     rotateY(-radians(yaw));
-    box(w,h,d);
+    box(w, h, d);
     pop();
   }
 

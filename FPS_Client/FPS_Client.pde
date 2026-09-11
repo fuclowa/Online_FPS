@@ -23,7 +23,7 @@ void setup() {
   add_map_objects();
 
   perspective(PI / 3.0, (float) width / height, 1, 10000);
-  
+
   try {
     robot = new Robot();
   }
@@ -40,8 +40,11 @@ void main_process() {
   background(0);
   process_player();
   process_camera();
-  process_enemy(); 
+  if (player.client.available() > 0) {
+    //process_enemy();
+  }
   process_Map_objects();
+  println(player.id);
 }
 
 boolean click;
