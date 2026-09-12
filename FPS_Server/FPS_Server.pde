@@ -39,14 +39,14 @@ void draw() {
         players.get(index).pos = pos;
       }
       String data_to_send = "";
-      for (int i = 0; i < players.size() - 1; i++) {
+      for (int i = 0; i < players.size(); i++) {
         Player p = players.get(i);
         if (p.client == client)continue;
         if (i == 0)data_to_send = p.id +"," +p.pos.x + "," + p.pos.y + "," + p.pos.z + "," + p.yaw;
         else data_to_send += "|" + p.id +"," + p.pos.x + "," + p.pos.y + "," + p.pos.z + "," + p.yaw;
       }
       if (frameCount % 2 == 0) {
-        client.write(data_to_send);
+        client.write("Players|"+data_to_send);
       }
     }
   }
@@ -56,7 +56,7 @@ void draw() {
 }
 
 int find_player(Client client) {
-  for (int i = 0; i < players.size() - 1; i++) {
+  for (int i = 0; i < players.size(); i++) {
     Player p = players.get(i);
     if (p.client == client)return i;
   }
@@ -64,7 +64,7 @@ int find_player(Client client) {
 }
 
 void view_players() {
-  for (int i = 0; i < players.size() - 1; i++) {
+  for (int i = 0; i < players.size(); i++) {
     Player p = players.get(i);
     println(p.id+" "+p.pos);
   }
