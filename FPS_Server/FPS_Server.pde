@@ -25,6 +25,7 @@ void draw() {
     }
     String data = client.readString();
     if (data != null) {
+      println(data);
       String[] data_array = split(trim(data), "|");
       if (data_array[0].equals("Pos")) {
         data_array[1] = data_array[1].replace("[", "").replace("]", "");
