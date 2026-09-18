@@ -93,6 +93,40 @@ class Player {
     }
     return false;
   }
+
+  void shoot() {
+    boolean isHit = false;
+    float dx, dy, dz;
+    dx = cos(radians(yaw));
+    dz = sin(radians(yaw));
+    dy = sin(radians(pitch));
+    float cx, cy, cz;
+    cx = cameraX;
+    cy = cameraY;
+    cz = cameraZ;
+    while (!isHit) {
+      cx += dx;
+      cy += dy;
+      cz += dz;
+      for (int i = 0; i < enemies.size(); i++) {
+        Enemy e = enemies.get(i);
+        if (e.pos.x + w/2 >= cx &&
+          e.pos.x - w/2 <= cx &&
+
+          e.pos.y + h/2 >= cy &&
+          e.pos.y - h/2 <= cy &&
+
+          e.pos.z + d/2 >= cz &&
+          e.pos.z - d/2 <= cz) {
+            isHit = true;
+            client.write("Hit|"+e.id);
+        }
+        if(dist(pos.x,pos.y,pos.z,cx,cy,cz) > 3000){
+          isHit = true;
+        }
+      }
+    }
+  }
 }
 
 void process_player() {
