@@ -42,23 +42,18 @@ void draw() {
       if (data_array[0].equals("Hit")) {
         players.get(find_player_by_id(int(data_array[1]))).client.write("Hit");
       }
-      String data_to_send = "";
-      for (int i = 0; i < players.size(); i++) {
-        Player p = players.get(i);
-        if (p.client == client) continue;
-
-        if (!data_to_send.equals("")) {
-          data_to_send += "|";
-        }
-
-        data_to_send += p.id + "," + p.pos.x + "," + p.pos.y + "," + p.pos.z + "," + p.yaw;
-      }
-      if (frameCount % 2 == 0) {
-        client.write("Players|"+data_to_send+"\n");
-      }
     }
   }
-
+  String data_to_send = "";
+  for (int i = 0; i < players.size(); i++) {
+    Player p = players.get(i);
+    if (!data_to_send.equals("")) {
+      data_to_send += "|";
+    }
+    data_to_send += p.id + "," + p.pos.x + "," + p.pos.y + "," + p.pos.z + "," + p.yaw;
+  }
+  if(!data_to_send.equals(""))server.write("Players|"+data_to_send+"\n");
+  println("Players|"+data_to_send+"\n");
   //view_players();
   fill(0);
 }
