@@ -36,9 +36,6 @@ class Player {
       if (data_array[0].equals("ID")) {
         id = int(data_array[1]);
       }
-      if (data_array[0].equals("Hit")) {
-        println("dieeeeeeeeeeee");
-      }
     }
   }
 
