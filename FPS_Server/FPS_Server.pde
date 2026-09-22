@@ -20,12 +20,11 @@ void draw() {
     if (index == -1) {
       id ++;
       players.add(new Player(client, id));
-      client.write("ID|"+id);
+      client.write("ID|"+id+"\n");
       index = players.size() -1;
     }
     String data = client.readString();
     if (data != null) {
-      println(data);
       String[] data_array = split(trim(data), "|");
       if (data_array[0].equals("Pos")) {
         data_array[1] = data_array[1].replace("[", "").replace("]", "");
@@ -39,6 +38,10 @@ void draw() {
         players.get(index).yaw = float(data_array[2]);
         players.get(index).pos = pos;
       }
+
+      if (data_array[0].equals("Hit")) {
+        players.get(find_player_by_id(int(data_array[1]))).client.write("Hit");
+      }
       String data_to_send = "";
       for (int i = 0; i < players.size(); i++) {
         Player p = players.get(i);
@@ -47,12 +50,12 @@ void draw() {
         else data_to_send += "|" + p.id +"," + p.pos.x + "," + p.pos.y + "," + p.pos.z + "," + p.yaw;
       }
       if (frameCount % 2 == 0) {
-        client.write("Players|"+data_to_send);
+        server.write("Players|"+data_to_send+"\n");
       }
     }
   }
 
-  view_players();
+  //view_players();
   fill(0);
 }
 
@@ -60,6 +63,14 @@ int find_player(Client client) {
   for (int i = 0; i < players.size(); i++) {
     Player p = players.get(i);
     if (p.client == client)return i;
+  }
+  return -1;
+}
+
+int find_player_by_id(int id) {
+  for (int i = 0; i < players.size(); i++) {
+    Player p = players.get(i);
+    if (p.id == id)return i;
   }
   return -1;
 }
