@@ -17,7 +17,7 @@ void settings() {
 }
 
 void setup() {
-  player = new Player(new PVector(0, -200, 0), 50, 150, 50, 0, 0, new Client(this, "192.168.0.18", 5204));
+  player = new Player(new PVector(0, -200, 0), 50, 150, 50, 0, 0, new Client(this, "192.168.0.6", 5204));
   map_objects = new ArrayList<Map_object>();
   enemies = new ArrayList<Enemy>();
   window = (GLWindow) surface.getNative();
@@ -47,7 +47,7 @@ void main_process() {
   }
   process_enemy_2();
   process_Map_objects();
-  println(player.id);
+  //println(player.id);
 }
 
 boolean click;
