@@ -47,7 +47,7 @@ void main_process() {
   }
   process_enemy_2();
   process_Map_objects();
-  println(player.id);
+  //println(player.id);
 }
 
 boolean click;
