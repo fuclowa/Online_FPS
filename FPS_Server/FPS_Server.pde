@@ -54,7 +54,7 @@ void draw() {
         data_to_send += p.id + "," + p.pos.x + "," + p.pos.y + "," + p.pos.z + "," + p.yaw;
       }
       if (frameCount % 2 == 0) {
-        server.write("Players|"+data_to_send+"\n");
+        client.write("Players|"+data_to_send+"\n");
       }
     }
   }
