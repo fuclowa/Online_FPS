@@ -142,9 +142,9 @@ class Player {
 void process_player() {
   player.update();
   player.display();
-  //if (frameCount % 2 == 0) {
+  if (frameCount % 2 == 0) {
     player.send_data();
-  //}
+  }
 }
 
 

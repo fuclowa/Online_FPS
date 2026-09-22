@@ -1,12 +1,12 @@
 void process_enemy() {//サーバーからの情報を処理
   String data = player.client.readString();
-  println(data);
+  //println(data);
   String[] data_array = data.split("\\|");
   if (data_array[0].equals("Players")) {
     for (int i = 1; i < data_array.length; i++) {
       String str[] = data_array[i].split(",");
       if (int(str[0]) == player.id) continue;
-      if(find_enemies(int(str[0])) == -1){
+      if(find_enemies(int(str[0])) == -1 && player.id != -1){
         enemies.add(new Enemy(int(str[0]),new PVector(float(str[1]), float(str[2]), float(str[3]))));
       }else{
         int index = find_enemies(int(str[0]));
@@ -48,4 +48,11 @@ int find_enemies(int id) {
     if (e.id == id)return i;
   }
   return -1;
+}
+
+void view_enemies() {
+  for (int i = 0; i < enemies.size(); i++) {
+    Enemy e = enemies.get(i);
+    println(e.id+" "+e.pos);
+  }
 }

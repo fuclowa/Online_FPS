@@ -36,6 +36,7 @@ void setup() {
 
 void draw() {
   main_process();
+  view_enemies();
 }
 
 void main_process() {

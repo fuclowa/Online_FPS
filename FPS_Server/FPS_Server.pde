@@ -52,8 +52,10 @@ void draw() {
     }
     data_to_send += p.id + "," + p.pos.x + "," + p.pos.y + "," + p.pos.z + "," + p.yaw;
   }
-  if(!data_to_send.equals(""))server.write("Players|"+data_to_send+"\n");
-  println("Players|"+data_to_send+"\n");
+  if (frameCount%2 == 0) {
+    if (!data_to_send.equals(""))server.write("Players|"+data_to_send+"\n");
+    println("Players|"+data_to_send+"\n");
+  }
   //view_players();
   fill(0);
 }
