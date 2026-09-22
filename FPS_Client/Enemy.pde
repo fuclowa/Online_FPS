@@ -1,6 +1,6 @@
 void process_enemy() {//サーバーからの情報を処理
   String data = player.client.readString();
-  println(data);
+  //println(data);
   String[] data_array = data.split("\\|");
   if (data_array[0].equals("Players")) {
     for (int i = 1; i < data_array.length; i++) {
