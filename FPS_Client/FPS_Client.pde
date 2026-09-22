@@ -53,6 +53,7 @@ void main_process() {
 boolean click;
 void mousePressed() {
   click = true;
+  player.shoot();
 }
 void mouseReleased() {
   click = false;
