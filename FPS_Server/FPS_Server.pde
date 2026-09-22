@@ -45,9 +45,13 @@ void draw() {
       String data_to_send = "";
       for (int i = 0; i < players.size(); i++) {
         Player p = players.get(i);
-        if (p.client == client)continue;
-        if (i == 0)data_to_send = p.id +"," +p.pos.x + "," + p.pos.y + "," + p.pos.z + "," + p.yaw;
-        else data_to_send += "|" + p.id +"," + p.pos.x + "," + p.pos.y + "," + p.pos.z + "," + p.yaw;
+        if (p.client == client) continue;
+
+        if (!data_to_send.equals("")) {
+          data_to_send += "|";
+        }
+
+        data_to_send += p.id + "," + p.pos.x + "," + p.pos.y + "," + p.pos.z + "," + p.yaw;
       }
       if (frameCount % 2 == 0) {
         server.write("Players|"+data_to_send+"\n");
