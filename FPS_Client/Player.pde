@@ -29,6 +29,9 @@ class Player {
       if (data_array[0].equals("ID")) {
         id = int(data_array[1]);
       }
+      if(data_array[0].equals("Hit")){
+        println("dieeeeeeeeeeee");
+      }
     }
   }
 
@@ -72,7 +75,7 @@ class Player {
   }
 
   void send_data() {
-    client.write("Pos" + "|" + pos + "|" + yaw);
+    client.write("Pos" + "|" + pos + "|" + yaw + "\n");
     //println("Pos" + "|" + pos + "|" + yaw);
   }
 
@@ -118,7 +121,7 @@ class Player {
           e.pos.z + d/2 >= cz &&
           e.pos.z - d/2 <= cz) {
           println("hoge");
-          player.client.write("Hit|"+e.id);
+          player.client.write("Hit|"+e.id+"\n");
           isHit = true;
         }
       }
