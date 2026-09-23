@@ -1,7 +1,7 @@
 //IDがうまく割り当てられない
 //サーバー側のデータがうまく更新できていない理由にもつながる
 
-{ 
+{
   System.setProperty("sun.java2d.uiScale", "1.0");
 }
 
@@ -47,7 +47,10 @@ void main_process() {
   process_player();
   process_camera();
   if (player.client.available() > 0) {
-    process_enemy();
+    String data_array[] = player.client.readString().split("\\|");
+    if (data_array[0].equals("Players"))process_enemy(data_array);
+    if (data_array[0].equals("ID")&&player.id == -1)player.recieve_id(data_array);
+    if (data_array[0].equals("Hit"))player.hit(data_array);
   }
   process_enemy_2();
   process_Map_objects();

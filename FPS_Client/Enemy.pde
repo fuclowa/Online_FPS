@@ -1,19 +1,14 @@
-void process_enemy() {//サーバーからの情報を処理
-  String data = player.client.readString();
-  //println(data);
-  String[] data_array = data.split("\\|");
-  if (data_array[0].equals("Players")) {
-    for (int i = 1; i < data_array.length; i++) {
-      String str[] = data_array[i].split(",");
-      if (int(str[0]) == player.id) continue;
-      if (player.id != -1) {
-        if (find_enemies(int(str[0])) == -1) {
-          enemies.add(new Enemy(int(str[0]), new PVector(float(str[1]), float(str[2]), float(str[3]))));
-        } else {
-          int index = find_enemies(int(str[0]));
-          Enemy e = enemies.get(index);
-          e.pos = new PVector(float(str[1]), float(str[2]), float(str[3]));
-        }
+void process_enemy(String[] data_array) {//サーバーからの情報を処理
+  for (int i = 1; i < data_array.length; i++) {
+    String str[] = data_array[i].split(",");
+    if (int(str[0]) == player.id) continue;
+    if (player.id != -1) {
+      if (find_enemies(int(str[0])) == -1) {
+        enemies.add(new Enemy(int(str[0]), new PVector(float(str[1]), float(str[2]), float(str[3]))));
+      } else {
+        int index = find_enemies(int(str[0]));
+        Enemy e = enemies.get(index);
+        e.pos = new PVector(float(str[1]), float(str[2]), float(str[3]));
       }
     }
   }

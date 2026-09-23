@@ -39,7 +39,7 @@ void draw() {
         players.get(index).pos = pos;
       }
 
-      if (data_array[0].equals("Hit")) {
+      if (data_array[0].equals("Hit"+"\n")) {
         players.get(find_player_by_id(int(data_array[1]))).client.write("Hit");
       }
     }
@@ -54,7 +54,7 @@ void draw() {
   }
   if (frameCount%2 == 0) {
     if (!data_to_send.equals(""))server.write("Players|"+data_to_send+"\n");
-    println("Players|"+data_to_send+"\n");
+    //println("Players|"+data_to_send+"\n");
   }
   view_players();
   fill(0);
