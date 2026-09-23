@@ -4,11 +4,12 @@ void process_enemy(String[] data_array) {//サーバーからの情報を処理
     if (int(str[0]) == player.id) continue;
     if (player.id != -1) {
       if (find_enemies(int(str[0])) == -1) {
-        enemies.add(new Enemy(int(str[0]), new PVector(float(str[1]), float(str[2]), float(str[3]))));
+        enemies.add(new Enemy(int(str[0]), new PVector(float(str[1]), float(str[2]), float(str[3])),float(str[4])));
       } else {
         int index = find_enemies(int(str[0]));
         Enemy e = enemies.get(index);
         e.pos = new PVector(float(str[1]), float(str[2]), float(str[3]));
+        e.yaw = float(str[4]);
       }
     }
   }
@@ -25,9 +26,10 @@ class Enemy {
   int id;
   PVector pos;
   float yaw;
-  Enemy(int id, PVector pos) {
+  Enemy(int id, PVector pos, float yaw) {
     this.id = id;
     this.pos = pos;
+    this.yaw = yaw;
   }
   void display() {
     push();
