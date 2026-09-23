@@ -23,18 +23,18 @@ class Player {
 
   void update() {
     move();
-    if (player.client.available() > 0) {
-      String data = client.readString();
-      String[] data_array = split(trim(data), "|");
-      if (data_array[0].equals("Hit")) {
-        println("dieeeeeeeeeeee");
-      }
-    }
     if (player.client.available() > 0 && id == -1) {
       String data = client.readString();
       String[] data_array = split(trim(data), "|");
       if (data_array[0].equals("ID")) {
         id = int(data_array[1]);
+      }
+    }
+    if (player.client.available() > 0) {
+      String data = client.readString();
+      String[] data_array = split(trim(data), "|");
+      if (data_array[0].equals("Hit")) {
+        println("dieeeeeeeeeeee");
       }
     }
   }
