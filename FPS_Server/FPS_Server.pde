@@ -21,6 +21,7 @@ void draw() {
       id ++;
       players.add(new Player(client, id));
       client.write("ID|"+id+"\n");
+      println("ID|"+id);
       index = players.size() -1;
     }
     String data = client.readString();
@@ -56,7 +57,7 @@ void draw() {
     if (!data_to_send.equals(""))server.write("Players|"+data_to_send+"\n");
     //println("Players|"+data_to_send+"\n");
   }
-  view_players();
+  //view_players();
   fill(0);
 }
 

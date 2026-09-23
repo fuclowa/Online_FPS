@@ -46,7 +46,7 @@ void main_process() {
   background(0);
   process_player();
   process_camera();
-  if (player.client.available() > 0) {
+  while (player.client.available() > 0) {
     String data_array[] = player.client.readString().split("\\|");
     if (data_array[0].equals("Players"))process_enemy(data_array);
     if (data_array[0].equals("ID")&&player.id == -1)player.recieve_id(data_array);

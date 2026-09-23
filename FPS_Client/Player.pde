@@ -26,10 +26,10 @@ class Player {
   }
 
   void recieve_id(String[] data_array) {
-      id = int(data_array[1]);
+    id = int(trim(data_array[1]));
   }
   void hit(String[] data_array) {
-      println(data_array[0]);
+    println(data_array[0]);
   }
 
   void move() {
