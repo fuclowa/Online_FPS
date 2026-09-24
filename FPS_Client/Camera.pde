@@ -1,7 +1,7 @@
 float cameraX, cameraY, cameraZ;
 void process_camera() {
-  cameraX = player.pos.x + cos(radians(player.yaw)) * 50;
-  cameraZ = player.pos.z + sin(radians(player.yaw)) * 50;
+  cameraX = player.pos.x + cos(radians(player.yaw));
+  cameraZ = player.pos.z + sin(radians(player.yaw));
   cameraY = player.pos.y - 50;
   set_mouse();
   set_angle();

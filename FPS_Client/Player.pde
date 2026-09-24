@@ -67,7 +67,7 @@ class Player {
   void display() {
     push();
     fill(0, 255, 0);
-    translate(pos.x, pos.y, pos.z);
+    translate(pos.x - cos(radians(player.yaw))*40, pos.y, pos.z - sin(radians(player.yaw)) * 40);
     rotateY(-radians(yaw));
     box(w, h, d);
     pop();

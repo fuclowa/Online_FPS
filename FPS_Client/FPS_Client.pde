@@ -20,7 +20,7 @@ void settings() {
 }
 
 void setup() {
-  player = new Player(new PVector(0, -200, 0), 50, 150, 50, 0, 0, new Client(this, "192.168.0.6", 5204));
+  player = new Player(new PVector(0, -200, 0), 50, 150, 50, 0, 0, new Client(this, "172.23.13.217", 5204));
   map_objects = new ArrayList<Map_object>();
   enemies = new ArrayList<Enemy>();
   window = (GLWindow) surface.getNative();
@@ -35,11 +35,21 @@ void setup() {
   catch (Exception e) {
     e.printStackTrace();
   }
+
+  noCursor();
 }
 
 void draw() {
   main_process();
   //view_enemies();
+  debug();
+  hint(DISABLE_DEPTH_TEST);
+  push();
+  camera();
+  draw_GUI();
+  debug_2();
+  pop();
+  hint(ENABLE_DEPTH_TEST);
 }
 
 String receiveBuffer;
@@ -79,6 +89,21 @@ void main_process() {
   //println(player.id);
 }
 
+void debug() {
+  float centerX = cameraX + cos(radians(player.yaw)) * cos(radians(player.pitch)) * 100;
+  float centerZ = cameraZ + sin(radians(player.yaw)) * cos(radians(player.pitch)) * 100;
+  float centerY = cameraY + sin(radians(player.pitch)) * 100;
+  line(cameraX,cameraY,cameraZ,centerX,centerY,centerZ);
+}
+
+void debug_2(){
+  text(player.yaw,100,100);
+}
+
+void draw_GUI() {
+  line(width/2 - 10, height/2, width/2 + 10, height/2);
+  line(width/2, height/2 - 10, width/2, height/2 + 10);
+}
 boolean click;
 void mousePressed() {
   click = true;
