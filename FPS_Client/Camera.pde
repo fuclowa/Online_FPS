@@ -8,9 +8,9 @@ void process_camera() {
   set_camera();
 }
 void set_camera() {
-  float centerX = cameraX + cos(radians(player.yaw)) * cos(radians(player.pitch));
-  float centerZ = cameraZ + sin(radians(player.yaw)) * cos(radians(player.pitch));
-  float centerY = cameraY + sin(radians(player.pitch)) * 1;
+  float centerX = cameraX + cos(radians(player.yaw)) * cos(radians(player.pitch)) * 10;
+  float centerZ = cameraZ + sin(radians(player.yaw)) * cos(radians(player.pitch)) * 10;
+  float centerY = cameraY + sin(radians(player.pitch)) * 10;
   camera(cameraX, cameraY, cameraZ, centerX, centerY, centerZ, 0, 1, 0);
 }
 

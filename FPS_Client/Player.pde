@@ -22,6 +22,7 @@ class Player {
   }
 
   void update() {
+    yaw = (yaw + 360)%360;
     move();
   }
 

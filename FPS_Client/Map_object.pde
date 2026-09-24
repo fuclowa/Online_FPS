@@ -24,6 +24,6 @@ void process_Map_objects() {
 }
 
 void add_map_objects(){
-  map_objects.add(new Map_object(0,50,0,10000,100,10000));
+  map_objects.add(new Map_object(0,50,0,5000,100,5000));
   map_objects.add(new Map_object(1000,-50,0,100,100,100));
 }

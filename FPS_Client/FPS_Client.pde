@@ -42,7 +42,7 @@ void setup() {
 void draw() {
   main_process();
   //view_enemies();
-  debug();
+  //debug();
   hint(DISABLE_DEPTH_TEST);
   push();
   camera();
@@ -92,8 +92,8 @@ void main_process() {
 void debug() {
   float centerX = cameraX + cos(radians(player.yaw)) * cos(radians(player.pitch)) * 100;
   float centerZ = cameraZ + sin(radians(player.yaw)) * cos(radians(player.pitch)) * 100;
-  float centerY = cameraY + sin(radians(player.pitch)) * 100;
-  line(cameraX,cameraY,cameraZ,centerX,centerY,centerZ);
+  stroke(0,0,255);
+  line(cameraX,cameraY+100,cameraZ,centerX,cameraY+100,centerZ);
 }
 
 void debug_2(){

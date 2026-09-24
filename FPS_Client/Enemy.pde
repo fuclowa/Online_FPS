@@ -4,7 +4,7 @@ void process_enemy(String[] data_array) {//サーバーからの情報を処理
     if (int(str[0]) == player.id) continue;
     if (player.id != -1) {
       if (find_enemies(int(str[0])) == -1) {
-        enemies.add(new Enemy(int(str[0]), new PVector(float(str[1]), float(str[2]), float(str[3])),float(str[4])));
+        enemies.add(new Enemy(int(str[0]), new PVector(float(str[1]), float(str[2]), float(str[3])), float(str[4])));
       } else {
         int index = find_enemies(int(str[0]));
         Enemy e = enemies.get(index);
@@ -34,7 +34,7 @@ class Enemy {
   void display() {
     push();
     fill(255, 0, 0);
-    translate(pos.x, pos.y, pos.z);
+    translate(pos.x - cos(radians(yaw))*40, pos.y, pos.z - sin(radians(yaw)) * 40);
     rotateY(-radians(yaw));
     box(player.w, player.h, player.d);
     pop();
