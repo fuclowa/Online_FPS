@@ -10,6 +10,7 @@ void setup() {
   players = new ArrayList<Player>();
 }
 
+String recieveBuffer = "";
 void draw() {
   background(255);
 
@@ -24,27 +25,32 @@ void draw() {
       println("ID|"+id);
       index = players.size() -1;
     }
-    String data = client.readString();
-    if (data != null) {
-      String[] data_array = split(trim(data), "|");
-      if (data_array[0].equals("Pos")) {
-        data_array[1] = data_array[1].replace("[", "").replace("]", "");
-        String[] str = data_array[1].split(",");
 
+    recieveBuffer += client.readString();
+    println(recieveBuffer);
+    while (recieveBuffer.indexOf(":") != -1) {
+
+      int index2 = recieveBuffer.indexOf(':');
+      String message = recieveBuffer.substring(0, index2);
+      recieveBuffer = recieveBuffer.substring(index2 + 1);
+      String[] data_array = message.split("\\|");
+      
+      if (data_array[0].equals("Pos")) {
+        String[] str = data_array[1].split(",");
         PVector pos = new PVector(
           float(str[0]),
           float(str[1]),
           float(str[2])
           );
-        players.get(index).yaw = float(data_array[2]);
+        players.get(index).yaw = float(str[3]);
         players.get(index).pos = pos;
       }
-
-      if (data_array[0].equals("Hit"+":")) {
-        players.get(find_player_by_id(int(data_array[1]))).client.write("Hit");
+      if (data_array[0].equals("Hit")) {
+        players.get(find_player_by_id(int(data_array[1]))).client.write("Hit" + ":");
       }
     }
   }
+
   String data_to_send = "";
   for (int i = 0; i < players.size(); i++) {
     Player p = players.get(i);

@@ -75,7 +75,7 @@ class Player {
   }
 
   void send_data() {
-    client.write("Pos" + "|" + pos + "|" + yaw + ":");
+    client.write("Pos|" + pos.x + "," + pos.y + "," + pos.z + "," + yaw + ":");
     //println("Pos" + "|" + pos + "|" + yaw);
   }
 
