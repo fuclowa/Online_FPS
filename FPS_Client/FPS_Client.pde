@@ -39,22 +39,44 @@ void setup() {
 
 void draw() {
   main_process();
-  view_enemies();
+  //view_enemies();
 }
 
+String receiveBuffer;
 void main_process() {
   background(0);
   process_player();
   process_camera();
   while (player.client.available() > 0) {
-    String data_array[] = player.client.readString().split("\\|");
-    if (data_array[0].equals("Players"))process_enemy(data_array);
-    if (data_array[0].equals("ID")&&player.id == -1)player.recieve_id(data_array);
-    if (data_array[0].equals("Hit"))player.hit(data_array);
+    //String data_array[] = player.client.readString().split("\\|");
+    //if (data_array[0].equals("Players"))process_enemy(data_array);
+    //if (data_array[0].equals("ID")&&player.id == -1)player.recieve_id(data_array);
+    //if (data_array[0].equals("Hit"))player.hit(data_array);
+    if (player.client.available() > 0) {
+      receiveBuffer += player.client.readString();
+    }
+
+    while (receiveBuffer.indexOf('\n') != -1) {
+
+      int index = receiveBuffer.indexOf('\n');
+
+      String message = receiveBuffer.substring(0, index);
+      receiveBuffer = receiveBuffer.substring(index + 1);
+
+      String[] data_array = message.split("\\|");
+
+      if (data_array[0].equals("ID") && player.id == -1) {
+        player.recieve_id(data_array);
+      } else if (data_array[0].equals("Players")) {
+        process_enemy(data_array);
+      } else if (data_array[0].equals("Hit")) {
+        player.hit(data_array);
+      }
+    }
   }
   process_enemy_2();
   process_Map_objects();
-  println(player.id);
+  //println(player.id);
 }
 
 boolean click;

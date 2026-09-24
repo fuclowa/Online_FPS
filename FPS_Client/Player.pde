@@ -26,7 +26,9 @@ class Player {
   }
 
   void recieve_id(String[] data_array) {
-    id = int(trim(data_array[1]));
+    id = int(data_array[1]);
+    //println("[" + data_array[1] + "]");
+    //println("[" + data_array[1].replace("\n", "") + "]");
   }
   void hit(String[] data_array) {
     println(data_array[0]);
