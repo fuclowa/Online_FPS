@@ -58,17 +58,14 @@ void main_process() {
   process_player();
   process_camera();
   while (player.client.available() > 0) {
+    receiveBuffer += player.client.readString();
     //String data_array[] = player.client.readString().split("\\|");
     //if (data_array[0].equals("Players"))process_enemy(data_array);
     //if (data_array[0].equals("ID")&&player.id == -1)player.recieve_id(data_array);
     //if (data_array[0].equals("Hit"))player.hit(data_array);
-    if (player.client.available() > 0) {
-      receiveBuffer += player.client.readString();
-    }
+    while (receiveBuffer.indexOf(':') != -1) {
 
-    while (receiveBuffer.indexOf('\n') != -1) {
-
-      int index = receiveBuffer.indexOf('\n');
+      int index = receiveBuffer.indexOf(':');
 
       String message = receiveBuffer.substring(0, index);
       receiveBuffer = receiveBuffer.substring(index + 1);
@@ -92,12 +89,12 @@ void main_process() {
 void debug() {
   float centerX = cameraX + cos(radians(player.yaw)) * cos(radians(player.pitch)) * 100;
   float centerZ = cameraZ + sin(radians(player.yaw)) * cos(radians(player.pitch)) * 100;
-  stroke(0,0,255);
-  line(cameraX,cameraY+100,cameraZ,centerX,cameraY+100,centerZ);
+  stroke(0, 0, 255);
+  line(cameraX, cameraY+100, cameraZ, centerX, cameraY+100, centerZ);
 }
 
-void debug_2(){
-  text(player.yaw,100,100);
+void debug_2() {
+  text(player.yaw, 100, 100);
 }
 
 void draw_GUI() {

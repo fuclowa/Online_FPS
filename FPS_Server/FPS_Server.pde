@@ -20,7 +20,7 @@ void draw() {
     if (index == -1) {
       id ++;
       players.add(new Player(client, id));
-      client.write("ID|"+id+"\n");
+      client.write("ID|"+id+":");
       println("ID|"+id);
       index = players.size() -1;
     }
@@ -40,7 +40,7 @@ void draw() {
         players.get(index).pos = pos;
       }
 
-      if (data_array[0].equals("Hit"+"\n")) {
+      if (data_array[0].equals("Hit"+":")) {
         players.get(find_player_by_id(int(data_array[1]))).client.write("Hit");
       }
     }
@@ -54,8 +54,8 @@ void draw() {
     data_to_send += p.id + "," + p.pos.x + "," + p.pos.y + "," + p.pos.z + "," + p.yaw;
   }
   if (frameCount%2 == 0) {
-    if (!data_to_send.equals(""))server.write("Players|"+data_to_send+"\n");
-    //println("Players|"+data_to_send+"\n");
+    if (!data_to_send.equals(""))server.write("Players|"+data_to_send+":");
+    //println("Players|"+data_to_send+":");
   }
   //view_players();
   fill(0);

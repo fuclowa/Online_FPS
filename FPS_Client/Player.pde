@@ -29,7 +29,7 @@ class Player {
   void recieve_id(String[] data_array) {
     id = int(data_array[1]);
     //println("[" + data_array[1] + "]");
-    //println("[" + data_array[1].replace("\n", "") + "]");
+    //println("[" + data_array[1].replace(":", "") + "]");
   }
   void hit(String[] data_array) {
     println(data_array[0]);
@@ -75,7 +75,7 @@ class Player {
   }
 
   void send_data() {
-    client.write("Pos" + "|" + pos + "|" + yaw + "\n");
+    client.write("Pos" + "|" + pos + "|" + yaw + ":");
     //println("Pos" + "|" + pos + "|" + yaw);
   }
 
@@ -121,7 +121,7 @@ class Player {
           e.pos.z + d/2 >= cz &&
           e.pos.z - d/2 <= cz) {
           println("hoge");
-          player.client.write("Hit|"+e.id+"\n");
+          player.client.write("Hit|"+e.id+":");
           isHit = true;
         }
       }
