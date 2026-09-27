@@ -33,6 +33,7 @@ class Player {
   }
   void hit(String[] data_array) {
     println(data_array[0]);
+    println(0/0);
   }
 
   void move() {
